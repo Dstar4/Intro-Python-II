@@ -1,5 +1,5 @@
 from room import Room
-
+from player import Player
 # Declare all the rooms
 
 room = {
@@ -37,21 +37,42 @@ room['treasure'].s_to = room['narrow']
 # Main
 #
 
-# Make a new player object that is currently in the 'outside' room.
 
+# Make a new player object that is currently in the 'outside' room.
+player = Player('Daniel', room['outside'])
 # Write a loop that:
 #
-# * Prints the current room name
-# * Prints the current description (the textwrap module might be useful here).
-# * Waits for user input and decides what to do.
-#
-# If the user enters a cardinal direction, attempt to move to the room there.
-# Print an error message if the movement isn't allowed.
-#
-# If the user enters "q", quit the game.
 
 
-# TODO REPL Class
+valid_input = ["n", "s", "e", "w"]
+
+
+while True:
+
+    print(f'\nYou are now in the {player.current_room.room_name}')
+    print(f'{player.current_room.room_description} \n')
+    userDirection = input("Please choose a direction to travel: n,s,e,w\n")
+
+    if userDirection in valid_input:
+        if player.current_room.get_directions(userDirection) is None:
+            print("You cannot travel that way.")
+        else:
+            player.travel(userDirection)
+    elif userDirection == "q":
+        break
+    else:
+        print("Please enter a valid direction.")
+
+    # * Prints the current room name
+    # * Prints the current description (the textwrap module might be useful here).
+    # * Waits for user input and decides what to do.
+
+    # If the user enters a cardinal direction, attempt to move to the room there.
+    # Print an error message if the movement isn't allowed.
+
+    # If the user enters "q", quit the game.
+
+    # TODO REPL Class
 '''
 - Print Name and Description of Current Room after movement.
 - n , s , e , w are valid commands for movement
