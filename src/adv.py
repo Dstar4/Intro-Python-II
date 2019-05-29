@@ -49,3 +49,13 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+
+# TODO REPL Class
+'''
+- Print Name and Description of Current Room after movement.
+- n , s , e , w are valid commands for movement
+- Print item list of current room.
+- Understand Verb , Object input.
+- i command for inventory.
+'''
