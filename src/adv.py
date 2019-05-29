@@ -3,22 +3,29 @@ from player import Player
 # Declare all the rooms
 
 room = {
-    'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+    'outside':  Room("Outside the shack",
+                     """You stand outside the shack.\n
+Its foundations sinking into the earth, shutters falling off the windows,\
+beginning to grow a sort of moss. The porch, in true country fashion wraps all\
+the way around the house"""),
 
-    'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east."""),
+    'foyer':    Room("on the Porch",
+                     """Dim light filters in from the house.\
+The porch wraps around the house to the the North, or you\
+can enter the house to the East."""),
 
-    'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
-into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm."""),
+    'overlook': Room(" on the Back Porch",
+                     """The back porch looks over a swamp spanning as far as the eye can see.\
+There is no way through."""),
 
-    'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air."""),
+    'narrow':   Room(" in the Cabin",
+                     """The cabin is dark, only lit by a candle in the middle of the room.\
+There is the faint smell of musty air coming from the
+cellar to the North."""),
 
-    'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
-chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
+    'treasure': Room("in the Cellar",
+                     """You enter the cellar, you are not sure what you came\
+for, but you do not see anything of interest here."""),
 }
 
 
@@ -49,7 +56,7 @@ valid_input = ["n", "s", "e", "w"]
 
 while True:
 
-    print(f'\nYou are now in the {player.current_room.room_name}')
+    print(f'\nYou are now {player.current_room.room_name}')
     print(f'{player.current_room.room_description} \n')
     userDirection = input("Please choose a direction to travel: n,s,e,w\n")
 
