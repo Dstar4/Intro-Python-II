@@ -22,6 +22,7 @@ class Room:
         self.s_to = None
         self.w_to = None
         self.e_to = None
+        self.items = []
 
     def get_directions(self, direction):
         if direction == "n":
@@ -35,4 +36,6 @@ class Room:
             return self.w_to
 
     def __repr__(self):
-        return f'Name: {self.room_name}, Description: {self.room_description}'
+        return (f"""Name: {self.room_name},
+                Description: {self.room_description},
+                Items: {self.items}""")

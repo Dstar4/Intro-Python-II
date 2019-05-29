@@ -13,6 +13,7 @@ class Player:
     def __init__(self, player_name, starting_room):
         self.player_name = player_name
         self.current_room = starting_room
+        self.inventory = ["hat", "monocle", ]
 
     def __repr__(self):
         return f'Name: {player_name}, Current Room: {current_room}'
@@ -26,3 +27,9 @@ class Player:
             self.current_room = self.current_room.e_to
         if direction == "w":
             self.current_room = self.current_room.w_to
+
+    def getItem(self, item):
+        print("Inventory", self.inventory)
+        inventory = self.inventory
+        inventory = self.inventory.insert(0, item)
+        print("InventoryAppended", self.inventory)

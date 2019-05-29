@@ -4,7 +4,7 @@ from player import Player
 
 room = {
     'outside':  Room("Outside the shack",
-                     """You stand outside the shack.\n
+                     """You stand outside the shack.
 Its foundations sinking into the earth, shutters falling off the windows,\
 beginning to grow a sort of moss. The porch, in true country fashion wraps all\
 the way around the house"""),
@@ -20,7 +20,7 @@ There is no way through."""),
 
     'narrow':   Room(" in the Cabin",
                      """The cabin is dark, only lit by a candle in the middle of the room.\
-There is the faint smell of musty air coming from the
+ There is the faint smell of musty air coming from the \
 cellar to the North."""),
 
     'treasure': Room("in the Cellar",
@@ -40,6 +40,9 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
+# Set items
+
+room['outside'].items = ["shovel", "spade"]
 #
 # Main
 #
@@ -57,27 +60,33 @@ valid_input = ["n", "s", "e", "w"]
 while True:
 
     print(f'\nYou are now {player.current_room.room_name}')
-    print(f'{player.current_room.room_description} \n')
-    userDirection = input("Please choose a direction to travel: n,s,e,w\n")
+    print(f'{player.current_room.room_description},\
+           Items: {player.current_room.items} \n')
+    userDirection = input(
+        "Please choose a direction to travel: n,s,e,w\n")
 
     if userDirection in valid_input:
         if player.current_room.get_directions(userDirection) is None:
             print("You cannot travel that way.")
         else:
             player.travel(userDirection)
+    elif userDirection == "i":
+        print(player.inventory)
     elif userDirection == "q":
         break
+    elif userDirection == "action":
+        take_drop = input("Please enter take or drop")
+        if take_drop == "take":
+            select = input(
+                "Please enter the name of the item you with to pick up.")
+            print("select", select)
+            player.getItem(select)
+            room.removeItem(select)
+        if take_drop == "drop":
+            select = input(
+                "Please enter the name of the item you with to drop.")
     else:
         print("Please enter a valid direction.")
-
-    # * Prints the current room name
-    # * Prints the current description (the textwrap module might be useful here).
-    # * Waits for user input and decides what to do.
-
-    # If the user enters a cardinal direction, attempt to move to the room there.
-    # Print an error message if the movement isn't allowed.
-
-    # If the user enters "q", quit the game.
 
     # TODO REPL Class
 '''
