@@ -1,14 +1,23 @@
 from room import Room
 from player import Player
 from item import Item
+# Declare All Items
+
+
+items = {
+    'candle': Item('candle', 'a normal candle'),
+    'hat': Item('hat', 'an everyday hat'),
+    'binoculars': Item('binoculars', 'for looking at distant memories.'),
+    'matches': Item('matches', 'A pack of matches, these could come in handy.'),
+    'cobwebs': Item('cobwebs', 'Can you really ever get them off of you?')
+}
 
 # Declare all the rooms
 
 room = {
     'outside': Room('Outside the shack',
                     '''Its foundations sinking into the earth, shutters falling off the windows,\
-The porch, in true country fashion wraps all\
-the way around the house.'''),
+The porch, in true country fashion wraps allthe way around the house.'''),
 
     'foyer': Room('On the front porch',
                   '''Dim light filters in from the house.\
@@ -40,38 +49,23 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
-# Declare All Items
-
-
-item = {
-    'candle': Item('Candle', 'a normal candle')
-}
 
 # Set items
 
 # room['outside'].items = ['shovel', 'spade']
-room['outside'].items = item['candle']
-# room['overlook'].items = ['binoculars', 'matches']
-# room['narrow'].items = ['cobwebs']
+room['outside'].items = items['candle'], items['hat']
+room['overlook'].items = items['binoculars'], items['matches']
+room['narrow'].items = items['cobwebs']
 #
 # Main
 #
-
-
 # Make a new player object that is currently in the 'outside' room.
 player = Player('Daniel', room['outside'])
-# Write a loop that:
-#
-
 
 valid_input = ('n', 's', 'e', 'w')
 
 while True:
-    # print(player)
-    # print(f'\nYou are now {player.current_room.room_name}')
-    # if player.current_room.items:
     print(f'{player.current_room}')
-    # Items: {player.current_room.items.item_name} \n')
     userDirection = input(
         'Please choose a direction to travel: n,s,e,w\t')
 
@@ -80,29 +74,34 @@ while True:
             print('You cannot travel that way.')
         else:
             player.travel(userDirection)
+
     elif userDirection == 'i':
-        print(player.inventory)
+        print(item.item_name for item in player.inventory)
+
     elif userDirection == 'q':
         break
+
     elif userDirection == 'take':
         select = input(
             'Please enter the name of the item you with to pick up.')
+        print("SELECT", select)
+        print(player.current_room.items)
+        if select in player.current_room.item_names:
+            print("items in adv", select)
+            player.current_room.remove_item(select)
+            # player.take_item(items[select])
+            # print(items[select].pick_up())
+        else:
+            print("\nItem is not in this room.")
 
-        # print('select', select)
-        # player.inventory.on_take(select)
-        player.take_item(select)
-        player.current_room.remove_item(select)
-        # player.lightsource = True
-        if userDirection == 'drop':
-            select = input(
-                'Please enter the name of the item you with to drop.\n')
     elif userDirection == 'drop':
         select = input(
             '--------------------------------\nPlease enter the name of the\
 item you with to drop.\n')
         print('select', select)
-        player.drop_item(select)
-        player.current_room.add_item(select)
+
+        # player.drop_item(select)
+        # player.current_room.add_item(select)
 
     else:
         print('Please enter a valid direction.')

@@ -4,7 +4,7 @@ class Item:
         self.item_description = item_description
 
     def __repr(self):
-        return f'Item: {self.item_name}'
+        return {self.item_name}
 
     def on_take(self, item):
         # player.take_item(item)
@@ -12,3 +12,6 @@ class Item:
 
     def on_drop(self, item):
         return f'You have dropped {item}.'
+
+    def look(self):
+        return f'Item: {self.item_name}\nDescription: {self.item_description}'
