@@ -23,10 +23,10 @@ class Room:
             return self.w_to
 
     def __repr__(self):
-        returnString = (f"""----------------------------\n
-                Name: {self.room_name},
-                \nDescription: {self.room_description}
-                \n---------------------------------------""")
+        returnString = (f"""--------------------------------------------------------------------\n
+{self.room_name},
+\n{self.room_description}
+\n--------------------------------------------------------------------""")
         return returnString
 
     def remove_item(self, select_item):

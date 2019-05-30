@@ -6,17 +6,16 @@ from item import Item
 
 room = {
     'outside': Room('Outside the shack',
-                    '''You stand outside the shack.\
-Its foundations sinking into the earth, shutters falling off the windows,\
-beginning to grow a sort of moss. The porch, in true country fashion wraps all\
+                    '''Its foundations sinking into the earth, shutters falling off the windows,\
+The porch, in true country fashion wraps all\
 the way around the house.'''),
 
-    'foyer': Room('on the Porch',
+    'foyer': Room('On the front porch',
                   '''Dim light filters in from the house.\
 The porch wraps around the house to the the North, or you\
 can enter the house to the East.'''),
 
-    'overlook': Room(' on the Back Porch',
+    'overlook': Room(' On the Back porch',
                      '''The back porch looks over a swamp spanning as far as the eye can see.\
 There is no way through.'''),
 
