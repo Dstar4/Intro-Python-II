@@ -14,9 +14,10 @@ class Player:
         self.player_name = player_name
         self.current_room = starting_room
         self.inventory = ["hat", "monocle", ]
+        self.lightsource = None
 
     def __repr__(self):
-        return f'Name: {player_name}, Current Room: {current_room}'
+        return f'Name: {self.player_name}, Current Room: {self.current_room}'
 
     def travel(self, direction):
         if direction == "n":
@@ -28,8 +29,13 @@ class Player:
         if direction == "w":
             self.current_room = self.current_room.w_to
 
-    def getItem(self, item):
-        print("Inventory", self.inventory)
-        inventory = self.inventory
-        inventory = self.inventory.insert(0, item)
-        print("InventoryAppended", self.inventory)
+    def get_item(self, item):
+        self.inventory.insert(0, item)
+
+    def drop_item(self, item):
+        self.inventory.remove(item)
+
+    def add_light(self, bool):
+        if bool is True:
+            print("You have found a lightsource")
+            self.lightsource = True

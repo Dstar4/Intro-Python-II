@@ -27,7 +27,6 @@ class Room:
     def get_directions(self, direction):
         if direction == "n":
             return self.n_to
-            print(self.n_to)
         if direction == "s":
             return self.s_to
         if direction == "e":
@@ -37,5 +36,10 @@ class Room:
 
     def __repr__(self):
         return (f"""Name: {self.room_name},
-                Description: {self.room_description},
-                Items: {self.items}""")
+                Description: {self.room_description}""")
+
+    def remove_item(self, select_item):
+        self.items = self.items.remove(select_item)
+
+    def add_item(self, select_item):
+        self.items = self.items.insert(0, select_item)
